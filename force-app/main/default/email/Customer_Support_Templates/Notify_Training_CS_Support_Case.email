@@ -1,0 +1,10 @@
+Company Name: {!Case.Account}
+Acct #: {!Case.uLab_Acct_Number__c}
+Contact Name: {!Case.Contact}
+Case Number: {!Case.CaseNumber}
+Subject: {!Case.Subject}
+Description: {!Case.Description}
+Action Taken: {!Case.Case_Solution__c}
+Patient Name: {!Case.Patient_Names__c}
+Order Number: {!Case.Related_uLab_Order__c}
+Link to Case: {!Case.Link}
