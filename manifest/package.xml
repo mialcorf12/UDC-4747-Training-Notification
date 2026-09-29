@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Case.Training_Notification__c</members>
+        <members>Case.Training_Notification_Date__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Customer_Support_Templates/Notify_Training_CS_Support_Case</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>Case_Training_Notification</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Case-Support Case Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Case.Support_Case_Training_Notification</members>
+        <name>WorkflowAlert</name>
+    </types>
+    <types>
+        <members>Case</members>
+        <name>Workflow</name>
+    </types>
     <version>67.0</version>
 </Package>

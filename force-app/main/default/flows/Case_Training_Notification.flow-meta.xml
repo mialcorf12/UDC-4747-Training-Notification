@@ -8,6 +8,9 @@
         <locationY>323</locationY>
         <actionName>Case.Support_Case_Training_Notification</actionName>
         <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Update_Training_Notification_Date</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -16,10 +19,11 @@
             </value>
         </inputParameters>
         <nameSegment>Case.Support_Case_Training_Notification</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>60.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
-    <description>Triggers training notification email to training@ulabsystems.com when Training Notification checkbox is set to True on Support Case.</description>
+    <description>Triggers training notification email to training@ulabsystems.com and stamps Training Notification Date when Training Notification checkbox is set to True on Support Case.</description>
     <environments>Default</environments>
     <interviewLabel>Case: Training Notification {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Case: Training Notification</label>
@@ -42,6 +46,20 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Sets the Training Notification Date to today.</description>
+        <name>Update_Training_Notification_Date</name>
+        <label>Update Training Notification Date</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Training_Notification_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
@@ -53,6 +71,13 @@
         <filters>
             <field>Training_Notification__c</field>
             <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Training_Notification_Date__c</field>
+            <operator>IsNull</operator>
             <value>
                 <booleanValue>true</booleanValue>
             </value>

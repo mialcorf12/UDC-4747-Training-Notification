@@ -1,25 +1,34 @@
-### **User Story: Add Training Notification Checkbox & Email Automation on Support Case**
+### **User Story: Add Training Notification Checkbox, Date Field & Email Automation on Support Case**
+
 ### **Description**
 
 **As a** Client Services Representative (**uLab Client Services** profile),
 
-**I want to** trigger an automated notification to the Training team directly from a Support Case,
+**I want to** trigger an automated notification to the Training team directly from a Support Case and automatically track when the notification was sent,
 
-**So that** I can seamlessly route case details to `training@ulabsystems.com` without manually copying and pasting information into an external email.
+**So that** I can seamlessly route case details to `training@ulabsystems.com` without manual email drafting and maintain an accurate audit trail of training requests.
 
 ---
 
 ### **Acceptance Criteria**
 
-#### **1. Field Creation & Page Layout**
+#### **1. Fields Creation & Page Layout**
 
-* [ ] A new checkbox field **`Training Notification`** (`Training_Notification__c`) is created on the **Case** object.
-* [ ] The **`Training Notification`** checkbox is added to the Support Case layout, placed adjacent to (above, below, or alongside) the existing **POD Notification** checkbox under the **Additional Information** section.
-* [ ] Default value for the checkbox is set to `Unchecked` (`False`).
+* [ ] A new checkbox field **`Training Notification`** (`Training_Notification__c`) is created on the **Case** object (Default: `Unchecked` / `False`).
+* [ ] A new date field **`Training Notification Date`** (`Training_Notification_Date__c`) is created on the **Case** object.
+* [ ] Both fields are added to the Support Case page layout under the **Additional Information** section:
+* **`Training Notification`** is placed adjacent to (above, below, or alongside) the existing **POD Notification** checkbox.
+* **`Training Notification Date`** is placed directly next to the **`Training Notification`** checkbox (mirroring the **POD Notification Date** positioning).
 
-#### **2. Email Automation (Flow / Email Alert)**
 
-* [ ] When **`Training Notification`** is set to `True`, an automated email is triggered immediately to **`training@ulabsystems.com`**.
+
+#### **2. Email Automation & Field Update (Salesforce Flow)**
+
+* [ ] When **`Training Notification`** is updated to `True`, an automated Flow executes to:
+1. **Send Email Alert:** Send an immediate email to **`training@ulabsystems.com`** containing all relevant case details.
+2. **Update Record Field:** Automatically populate **`Training_Notification_Date__c`** with the current date (`$Flow.CurrentDate` / `$Record.LastModifiedDate`).
+
+
 * [ ] The email includes the following dynamic fields:
 * **Company Name** (`{!Case.Account}`)
 * **Acct #** (`{!Case.uLab_Acct_Number__c}`)
@@ -34,10 +43,10 @@
 
 
 
-#### **3. Security & Access Control**
+#### **3. Security & Access Control (FLS)**
 
-* [ ] Field-Level Security (FLS) allows read/write access to users with the **`uLab Client Services`** profile (and System Administrators).
-* [ ] Read-only or hidden access is applied to other profiles to prevent unauthorized triggering.
+* [ ] Field-Level Security (FLS) for both `Training_Notification__c` and `Training_Notification_Date__c` grants Read/Write access to users with the **`uLab Client Services`** profile and **System Administrators**.
+* [ ] Read-only or hidden access is applied to all other profiles.
 
 ---
 
