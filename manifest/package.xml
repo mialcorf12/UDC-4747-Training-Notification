@@ -21,9 +21,5 @@
         <members>Case.Support_Case_Training_Notification</members>
         <name>WorkflowAlert</name>
     </types>
-    <types>
-        <members>Case</members>
-        <name>Workflow</name>
-    </types>
     <version>67.0</version>
 </Package>
